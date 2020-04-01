@@ -1,0 +1,3 @@
+/home/cat/GIT/Udacity_Memory_Chatbot/build/CMakeFiles/rebuild_cache.dir
+/home/cat/GIT/Udacity_Memory_Chatbot/build/CMakeFiles/membot.dir
+/home/cat/GIT/Udacity_Memory_Chatbot/build/CMakeFiles/edit_cache.dir
