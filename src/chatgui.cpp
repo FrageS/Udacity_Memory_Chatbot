@@ -135,7 +135,7 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
 
 ChatBotPanelDialog::~ChatBotPanelDialog()
 {
-    //// DONE - no delete of smart point in destructor, as it safely deletes when goes out of scope
+    //// DONE - no delete of smart point in destructor, as it safely deletes when goes out of scope 
     //// STUDENT CODE
 
     //delete _chatLogic;

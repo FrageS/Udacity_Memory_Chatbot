@@ -45,6 +45,73 @@ ChatBot::~ChatBot()
 //// STUDENT CODE
 ////
 
+// Copy operator
+ChatBot::ChatBot(const ChatBot& source)
+{
+    std::cout << "ChatBot copy operator";
+
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+    _currentNode = source._currentNode;    
+    _image = source._image;
+}
+
+// Copy Assignment operator
+ChatBot& ChatBot::operator=(const ChatBot& source)
+{
+    std::cout << "ChatBot copy assignment operator";
+    // check for self-assignment (ccpreference for copy assignment)
+    if(&source == this)
+        return *this;
+
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+    _currentNode = source._currentNode;
+    _image = source._image;
+    return *this;
+}
+
+// Move operator
+ChatBot::ChatBot(ChatBot&& source)
+{
+    std::cout << "ChatBot move operator";
+
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+    _currentNode = source._currentNode;
+    _image = source._image;
+    _chatLogic->SetChatbotHandle(this);
+
+    // Uninstantiate old instance
+    source._chatLogic = nullptr;
+    source._rootNode = nullptr;
+    source._currentNode = nullptr;
+    source._image = NULL;
+}
+
+// Move Assignment operator
+ChatBot& ChatBot::operator=(ChatBot&& source)
+{
+    std::cout << "ChatBot move assignment operator";
+    // check for self-assignment (ccpreference for copy assignment)
+    if(&source == this)
+        return *this;
+    
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+    _currentNode = source._currentNode;
+    _image = source._image;
+    _chatLogic->SetChatbotHandle(this);
+
+    // Uninstantiate old instance
+    source._chatLogic = nullptr;
+    source._rootNode = nullptr;
+    source._currentNode = nullptr;
+    source._image = NULL;
+
+    return *this;
+}
+
 ////
 //// EOF STUDENT CODE
 
