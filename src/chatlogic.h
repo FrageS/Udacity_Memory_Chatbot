@@ -18,8 +18,9 @@ private:
     ////
 
     // data handles (owned)
+    // make _nodes a unique pointer
     std::vector<std::unique_ptr<GraphNode>> _nodes;
-    //std::vector<GraphEdge *> _edges;
+    std::vector<GraphEdge *> _edges;
 
     ////
     //// EOF STUDENT CODE

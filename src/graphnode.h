@@ -17,9 +17,10 @@ private:
     ////
 
     // data handles (owned)
+    // create outgoing / child edges as owning instance as unique pointers
     std::vector<std::unique_ptr <GraphEdge>> _childEdges;  // edges to subsequent nodes
 
-    // data handles (not owned)
+    // data handles (not owned) --> don't change incoming / parent edges
     std::vector<GraphEdge *> _parentEdges; // edges to preceding nodes 
     ChatBot *_chatBot;
 
@@ -45,7 +46,9 @@ public:
     // proprietary functions
     void AddToken(std::string token); // add answers to list
     void AddEdgeToParentNode(GraphEdge *edge);
+    // change the input of the function to a unique pointer
     void AddEdgeToChildNode(std::unique_ptr<GraphEdge> edge);
+    
 
     //// STUDENT CODE
     ////

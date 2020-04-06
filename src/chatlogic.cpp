@@ -39,7 +39,7 @@ ChatLogic::~ChatLogic()
     // delete all nodes --> not needed anymore due to smart pointer
 
 
-    // delete all edges
+    // delete all edges --> not needed anymore due to smart pointer
     /*for (auto it = std::begin(_edges); it != std::end(_edges); ++it)
     {
         delete *it;
@@ -125,15 +125,17 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                         ////
 
                         // check if node with this ID exists already
+                        // change to unique pointer reference
                         auto newNode = std::find_if(_nodes.begin(), _nodes.end(), [&id](std::unique_ptr<GraphNode> &node) { return node->GetID() == id; });
                        
-                        // create new element if ID does not yet exist
+                        // create new element if ID does not yet exist, create with make_unique
                         if (newNode == _nodes.end())
                         {
                             _nodes.emplace_back(std::make_unique<GraphNode>(id));
                             newNode = _nodes.end() - 1; // get iterator to last element
 
                             // add all answers to current node
+                            // get function for smart pointer
                             AddAllTokensToElement("ANSWER", tokens, *(newNode->get()));
                         }
 
@@ -154,21 +156,24 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                         if (parentToken != tokens.end() && childToken != tokens.end())
                         {
                             // get iterator on incoming and outgoing node via ID search
+                            // change to smart pointer reference
                             auto parentNode = std::find_if(_nodes.begin(), _nodes.end(), [&parentToken](std::unique_ptr<GraphNode>& node) { return node->GetID() == std::stoi(parentToken->second); });
                             auto childNode = std::find_if(_nodes.begin(), _nodes.end(), [&childToken](std::unique_ptr<GraphNode>& node) { return node->GetID() == std::stoi(childToken->second); });
 
                             // create new edge
+                            // creation of unique pointer instance with make_unique
                             std::unique_ptr<GraphEdge> edge = std::make_unique<GraphEdge>(id);
                             edge->SetChildNode(childNode->get());
                             edge->SetParentNode(parentNode->get());
                             //_edges.push_back(edge);
 
-                            // find all keywords for current node
+                            // find all keywords for current node, smartpointer get function
                             AddAllTokensToElement("KEYWORD", tokens, *(edge.get()));
 
                             // store reference in child node and parent node
+                            // smartpointer get function and move it back
                             childNode->get()->AddEdgeToParentNode(edge.get());
-                            parentNode->get()->AddEdgeToChildNode(std::move(edge));
+                            parentNode->get()->AddEdgeToChildNode(std::move(edge));                            
                         }
 
                         ////
