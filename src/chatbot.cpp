@@ -48,7 +48,7 @@ ChatBot::~ChatBot()
 // Copy operator
 ChatBot::ChatBot(const ChatBot& source)
 {
-    std::cout << "ChatBot copy operator";
+    std::cout << "ChatBot copy operator" << std::endl;
 
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
@@ -59,7 +59,7 @@ ChatBot::ChatBot(const ChatBot& source)
 // Copy Assignment operator
 ChatBot& ChatBot::operator=(const ChatBot& source)
 {
-    std::cout << "ChatBot copy assignment operator";
+    std::cout << "ChatBot copy assignment operator" << std::endl;
     // check for self-assignment (ccpreference for copy assignment)
     if(&source == this)
         return *this;
@@ -74,7 +74,7 @@ ChatBot& ChatBot::operator=(const ChatBot& source)
 // Move operator
 ChatBot::ChatBot(ChatBot&& source)
 {
-    std::cout << "ChatBot move operator";
+    std::cout << "ChatBot move operator" << std::endl;
 
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
@@ -92,7 +92,7 @@ ChatBot::ChatBot(ChatBot&& source)
 // Move Assignment operator
 ChatBot& ChatBot::operator=(ChatBot&& source)
 {
-    std::cout << "ChatBot move assignment operator";
+    std::cout << "ChatBot move assignment operator" << std::endl;
     // check for self-assignment (ccpreference for copy assignment)
     if(&source == this)
         return *this;
