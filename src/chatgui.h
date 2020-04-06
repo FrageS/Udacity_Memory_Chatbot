@@ -2,6 +2,7 @@
 #define CHATGUI_H_
 
 #include <wx/wx.h>
+// included memory header for unique pointers
 #include <memory>
 
 class ChatLogic; // forward declaration
@@ -16,6 +17,7 @@ private:
 
     //// STUDENT CODE
     ////
+    // Change of _chatlogic to a unique pointer
     std::unique_ptr<ChatLogic> _chatLogic;
     //ChatLogic *_chatLogic;
     ////
